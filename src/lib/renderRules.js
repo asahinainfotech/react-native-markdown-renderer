@@ -5,6 +5,8 @@ import FitImage from 'react-native-fit-image';
 import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
+import ImageView from './components/ImageView';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 const renderRules = {
   // when unknown elements are introduced, so it wont break
@@ -167,19 +169,20 @@ const renderRules = {
   },
   // li
   list_item: (node, children, parent, styles) => {
-    if (hasParents(parent, 'bullet_list')) {
+    if (hasParents(parent, 'ordered_list')) {
       return (
-        <View key={node.key} style={styles.listUnorderedItem}>
-          <Text style={styles.listUnorderedItemIcon}>{'\u00B7'}</Text>
+        <View key={node.key} style={styles.listOrderedItem}>
+          <Text style={styles.listOrderedItemIcon}>{node.index + 1}{node.markup}</Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
     }
 
-    if (hasParents(parent, 'ordered_list')) {
+    if (hasParents(parent, 'bullet_list')) {
       return (
-        <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>{node.index + 1}{node.markup}</Text>
+        <View key={node.key} style={styles.listUnorderedItem}>
+          {/* <Text style={styles.listUnorderedItemIcon}>{'\u00B7'}</Text> */}
+          <Icon name='circle' style={styles.listUnorderedItemIcon} />
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
@@ -230,7 +233,8 @@ const renderRules = {
   // br
   softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
   image: (node, children, parent, styles) => {
-    return <FitImage indicator={true} key={node.key} style={styles.image} source={{ uri: node.attributes.src }} />;
+    return <ImageView key={node.key} node={node} styles={styles} />;
+    //return <FitImage indicator={true} key={node.key} style={styles.image} source={{ uri: node.attributes.src }} />;
   },
 };
 

@@ -15,11 +15,10 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
   },
   codeInline: {
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fcedea',
     padding: 10,
-    borderRadius: 4,
+    borderRadius: 3,
+    color: '#c0341d'
   },
   del: {
     backgroundColor: '#000000',
@@ -30,9 +29,12 @@ export const styles = StyleSheet.create({
   headingContainer: {
     flexDirection: 'row',
   },
-  heading: {},
+  heading: {
+    fontWeight: '600',
+    color: '#233142',
+  },
   heading1: {
-    fontSize: 32,
+    fontSize: 30,
   },
   heading2: {
     fontSize: 24,
@@ -81,9 +83,11 @@ export const styles = StyleSheet.create({
   listUnorderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
+    color: '#000',
+    fontSize: 6,
     ...Platform.select({
       [PlatformEnum.IOS]: {
-        lineHeight: 36,
+        lineHeight: 26,
       },
       [PlatformEnum.ANDROID]: {
         lineHeight: 30,
@@ -91,8 +95,8 @@ export const styles = StyleSheet.create({
     }),
   },
   listUnorderedItemText: {
-    fontSize: 20,
-    lineHeight: 20,
+    fontSize: 18,
+    lineHeight: 18,
   },
 
   listOrdered: {},
@@ -104,20 +108,20 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     ...Platform.select({
       [PlatformEnum.IOS]: {
-        lineHeight: 36,
+        lineHeight: 26,
       },
       [PlatformEnum.ANDROID]: {
-        lineHeight: 30,
+        lineHeight: 26,
       },
     }),
   },
   listOrderedItemText: {
     fontWeight: 'bold',
-    lineHeight: 20,
+    lineHeight: 18,
   },
   paragraph: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -171,4 +175,19 @@ export const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
+  imageBox: {
+    flex: 1,
+  },
+  modalCloseButton: {
+    position: 'absolute',
+    top: 38,
+    left: 30,
+    height: 50,
+    width: 50,
+    zIndex: 99,
+  },
+  modalCloseIcon: {
+    color: '#f7f9ff',
+    fontSize: 20,
+  }
 });
